@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-device.device", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -60,6 +61,7 @@ function Device () {
                 me.cordova = buildLabel;
                 me.model = info.model;
                 me.isVirtual = info.isVirtual;
+                me.appVersion = info.appVersion || 'unknown';
                 // isiOSAppOnMac is iOS specific. If defined, it will be appended.
                 if (info.isiOSAppOnMac !== undefined) {
                     me.isiOSAppOnMac = info.isiOSAppOnMac;
@@ -94,3 +96,5 @@ Device.prototype.getInfo = function (successCallback, errorCallback) {
 };
 
 module.exports = new Device();
+
+});
