@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.provider.Settings;
 
 public class Device extends CordovaPlugin {
@@ -77,6 +79,7 @@ public class Device extends CordovaPlugin {
 	        r.put("isVirtual", this.isVirtual());
             r.put("serial", this.getSerialNumber());
             r.put("sdkVersion", this.getSDKVersion());
+            r.put("appVersion", this.getAppVersion());
             callbackContext.success(r);
         }
         else {
@@ -88,6 +91,16 @@ public class Device extends CordovaPlugin {
     //--------------------------------------------------------------------------
     // LOCAL METHODS
     //--------------------------------------------------------------------------
+
+    public String getAppVersion() {
+        Activity act = this.cordova.getActivity();
+        try {
+            return act.getPackageManager().getPackageInfo(act.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * Get the OS name.
