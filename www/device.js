@@ -1,4 +1,3 @@
-cordova.define("cordova-plugin-device.device", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -45,6 +44,7 @@ function Device () {
     this.isVirtual = null;
     this.serial = null;
     this.isiOSAppOnMac = null;
+    this.appVersion = null;
 
     var me = this;
 
@@ -96,5 +96,3 @@ Device.prototype.getInfo = function (successCallback, errorCallback) {
 };
 
 module.exports = new Device();
-
-});
